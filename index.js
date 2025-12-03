@@ -19,3 +19,9 @@ app.listen(PORT, () => {
 
 const productosRoutes = require("./src/resources/productos/productos.routes");
 app.use("/api/productos", productosRoutes);
+//Pedidos
+const pedidosRoutes = require("./src/resources/pedidos/pedidos.routes");
+app.use("/api/pedidos", pedidosRoutes);
+//Actividades
+const actividadesRoutes = require("./src/resources/actividades/actividades.routes");
+app.use("/api/actividades", actividadesRoutes);

@@ -151,4 +151,111 @@ En headers se debe ingresar lo siguiente:
 # Fin de la explicación para sql server
 ``
 
+# Inicio explicación para MongoDB
+Levantar MongoDB con Docker
 
+Ejecutar el siguiente comando:
+
+docker run -d --name multibase-mongo -p 27017:27017 -v mongo_data:/data/db mongo:latest
+
+## Puedes verificar que está corriendo con:
+
+docker ps
+
+## Crear colecciones
+Primero entrar a mongo con= docker exec -it multibase-mongo mongosh
+Despues seleccionar la base de datos con = use multibase_mongo
+
+## COLECCIÓN: pedidos
+
+### Crear colección
+
+db.createCollection("pedidos")
+
+## COLECCIÓN: actividades
+
+### Crear colección
+db.createCollection("actividades")
+
+## Corroborar se hicieron las colecciones con:
+show collections
+
+# Recomendaciones
+En Headers, siempre incluir: Content-Type: application/json
+# Pruebas Recomendadas en Pedidos
+
+## Probar en Postman:
+
+### GET – Listar todos los pedidos y por ID
+
+URL:   GET http://localhost:3000/api/pedidos
+
+URL:   GET http://localhost:3000/api/pedidos/:id
+
+### POST – Crear un pedido
+
+URL:   POST http://localhost:3000/api/pedidos
+
+Body JSON:
+
+{
+  "cliente": "Carlos López",
+  "items": [
+    { "producto": "Mouse gamer", "cantidad": 2 }
+  ],
+  "total": 600
+}
+
+### PATCH – Actualizar un pedido
+
+URL:   PATCH http://localhost:3000/api/pedidos/:id
+
+Body JSON:
+
+{
+  "total": 28999,
+  "cliente": "Juan P. Gómez"
+}
+
+### DELETE – Borrado lógico
+
+URL:   DELETE http://localhost:3000/api/pedidos/:id
+
+# Pruebas Recomendadas en Actividades
+
+## Probar en Postman:
+
+### GET – Listar actividades y por ID
+
+URL:   GET http://localhost:3000/api/actividades
+
+URL:   GET http://localhost:3000/api/actividades/:id
+
+### POST – Crear actividad
+
+URL:   POST http://localhost:3000/api/actividades
+
+Body JSON:
+
+{
+  "usuario": "Antonio",
+  "accion": "Actualizó perfil"
+}
+
+### PATCH – Actualizar actividad
+
+URL:   PATCH http://localhost:3000/api/actividades/:id
+
+
+Body JSON:
+
+{
+  "accion": "Inicio sesión desde Chrome"
+}
+
+### DELETE – Borrado lógico
+
+URL:   DELETE http://localhost:3000/api/actividades/:id
+
+# Fin de la explicación para MongoDB con Docker
+´´
